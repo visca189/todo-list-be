@@ -1,5 +1,5 @@
 import { Pool } from 'pg';
-import * as configurationProvider from '../config-provider';
+import * as configurationProvider from '../express-bootstrap/config-provider';
 
 let dbConnection: Pool;
 

@@ -1,8 +1,8 @@
 import util from 'util';
 import express from 'express';
-import { logger } from '../../logger';
+import { logger } from '../../express-bootstrap';
 import * as duty from '../../domain/duty';
-import { DutyNotFoundError } from '../../error-handling';
+import { DutyNotFoundError } from '../../error/duty';
 
 const router = express.Router();
 

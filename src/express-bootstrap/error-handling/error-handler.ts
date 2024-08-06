@@ -60,8 +60,13 @@ const terminateHttpServerAndExit = async (shutdownFn) => {
   }
 
   if (httpServerRef) {
-    await httpServerRef.close();
+    await new Promise<void>((resolve) => {
+      httpServerRef.close(() => {
+        resolve();
+      });
+    });
   }
+
   process.exit();
 };
 

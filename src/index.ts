@@ -1,5 +1,5 @@
-import { logger } from './logger';
-import { AppError, errorHandler } from './error-handling';
+import { logger } from './express-bootstrap';
+import { AppError, errorHandler } from './express-bootstrap/error-handling';
 import { startWebServer } from './api/server';
 
 async function start() {

@@ -1,7 +1,4 @@
 import getDbConnection from '../data-access/db-connection';
-import { DatabaseError as PgDatabaseError } from 'pg';
-import { DatabaseError } from '../error-handling';
-import { logger } from '../logger';
 
 export async function addDuty(name: string) {
   const dbConnection = getDbConnection();

@@ -1,14 +1,12 @@
 import express from 'express';
 import { AddressInfo } from 'net';
 import { Server } from 'http';
-import * as configurationProvider from '../config-provider';
-import configurationSchema from '../../config';
+import { logger, errorHandler, addRequestId } from '../express-bootstrap';
+import { LOG_LEVELS } from '../express-bootstrap/logger/definition';
+import * as configurationProvider from '../express-bootstrap/config-provider';
 import { dutyRouter } from './routes/duty';
-import { logger } from '../logger';
-import { errorHandler } from '../error-handling';
-import { addRequestId } from '../middleware/addRequestId';
 import getDbConnection from '../data-access/db-connection';
-import { LOG_LEVELS } from '../logger/definition';
+import configurationSchema from '../../config';
 
 let connection: Server;
 

@@ -9,3 +9,15 @@ export class AppError extends Error {
     super(message);
   }
 }
+
+export class BadInputError extends AppError {
+  constructor(public message: string, public cause?: unknown) {
+    super('BAD_INPUT_ERROR', message, 400, false, cause);
+  }
+}
+
+export class ValidationError extends AppError {
+  constructor(public message: string, public cause?: unknown) {
+    super('VALIDATION_ERROR', message, 400, false, cause);
+  }
+}

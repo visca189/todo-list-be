@@ -2,7 +2,7 @@ set timezone to 'UTC';
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
 CREATE TABLE IF NOT EXISTS duty (
-  id text default replace(uuid_generate_v4()::text, '-', '') primary key,
+  id text default uuid_generate_v4()::text primary key,
   name text not null,
   is_completed boolean default false,
   custom_data jsonb default '{}'::jsonb,

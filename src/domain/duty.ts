@@ -37,7 +37,7 @@ export async function getDuties() {
 
 export async function updateDutyById(
   id: string,
-  data: { name: string; isCompleted: boolean }
+  data: { name: string; is_completed: boolean }
 ) {
   const dbConnection = getDbConnection();
   const resp = await dbConnection.query(
@@ -47,7 +47,7 @@ export async function updateDutyById(
       where id = $3
       returning id, name, is_completed
     `,
-    [data.name, data.isCompleted, id]
+    [data.name, data.is_completed, id]
   );
 
   return resp.rows?.[0];

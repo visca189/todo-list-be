@@ -14,7 +14,8 @@
     "flyway": "^0.1.9",
     "pg": "^8.12.0",
     "pino": "^9.3.2",
-    "pino-pretty": "^11.2.2"
+    "pino-pretty": "^11.2.2",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "@types/convict": "^6.1.6",

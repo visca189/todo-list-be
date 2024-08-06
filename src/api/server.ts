@@ -44,12 +44,6 @@ function defineCommonMiddlewares(expressApp: express.Application) {
   expressApp.use(express.urlencoded({ extended: true }));
   expressApp.use(express.json());
   expressApp.use(corsSetup());
-  // expressApp.use(
-  //   cors({
-  //     origin: 'http://localhost:5173',
-  //   })
-  // );
-  // expressApp.use(cors());
 }
 
 function defineRoutes(expressApp: express.Application) {

@@ -1,0 +1,9 @@
+[environments.dev]
+url = "jdbc:postgresql://localhost:5432/dev"
+user = "dev"
+password = "password"
+
+[flyway]
+environment = "dev"
+locations = ["filesystem:./sql/default"]
+cleanDisabled = false

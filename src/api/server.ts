@@ -1,12 +1,14 @@
 import express from 'express';
 import { AddressInfo } from 'net';
 import { Server } from 'http';
+import cors from 'cors';
 import { logger, errorHandler, addRequestId } from '../express-bootstrap';
 import { LOG_LEVELS } from '../express-bootstrap/logger/definition';
 import * as configurationProvider from '../express-bootstrap/config-provider';
 import { dutyRouter } from './routes/duty';
 import getDbConnection from '../data-access/db-connection';
 import configurationSchema from '../../config';
+import { corsSetup } from '../express-bootstrap/middleware/cors';
 
 let connection: Server;
 
@@ -41,6 +43,13 @@ function defineCommonMiddlewares(expressApp: express.Application) {
   expressApp.use(addRequestId);
   expressApp.use(express.urlencoded({ extended: true }));
   expressApp.use(express.json());
+  expressApp.use(corsSetup());
+  // expressApp.use(
+  //   cors({
+  //     origin: 'http://localhost:5173',
+  //   })
+  // );
+  // expressApp.use(cors());
 }
 
 function defineRoutes(expressApp: express.Application) {
@@ -53,7 +62,9 @@ async function openConnection(
   return new Promise((resolve) => {
     const portToListenTo = configurationProvider.getValue('port');
     const webServerPort = portToListenTo || 0;
+
     logger.info(`Server is about to listen to port ${webServerPort}`);
+
     connection = expressApp.listen(webServerPort, () => {
       errorHandler.listenToErrorEvents(connection);
       resolve(connection.address() as AddressInfo);

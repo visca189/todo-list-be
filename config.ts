@@ -1,3 +1,9 @@
+import { z } from 'zod';
+
+const corsOriginSchema = z.object({
+  regex: z.union([z.string(), z.array(z.string())]),
+});
+
 export default {
   port: {
     doc: 'The API listening port. Testing will pass 0 (ephemeral) which serves as a dynamic port for testing purposes. For production use, a specific port must be assigned',
@@ -5,6 +11,17 @@ export default {
     default: 3000,
     nullable: false,
     env: 'PORT',
+  },
+  cors: {
+    origin: {
+      doc: 'The allowed origin for CORS',
+      format: function check(val: unknown) {
+        return corsOriginSchema.parse(val);
+      },
+      default: { regex: 'http://localhost' },
+      nullable: false,
+      env: 'CORS_ORIGIN',
+    },
   },
   logger: {
     level: {

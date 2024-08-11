@@ -1,6 +1,6 @@
 [environments.test]
-url = "jdbc:postgresql://localhost:54320/test"
-user = "test"
+url = "jdbc:postgresql://localhost:54320/testing"
+user = "testing"
 password = "password"
 
 [environments.dev]

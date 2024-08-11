@@ -5,7 +5,9 @@
   "license": "MIT",
   "scripts": {
     "start": "node .dist/index.ts",
-    "start:dev": "nodemon -r ts-node/register -r dotenv/config src/index.ts"
+    "start:dev": "nodemon -r ts-node/register -r dotenv/config src/index.ts",
+    "test": "PORT=0 jest",
+    "build": "tsc"
   },
   "dependencies": {
     "axios": "^1.7.3",
@@ -23,10 +25,14 @@
     "@types/convict": "^6.1.6",
     "@types/cors": "^2.8.17",
     "@types/express": "^4.17.21",
+    "@types/jest": "^29.5.12",
     "@types/node": "^22.1.0",
     "@types/pg": "^8.11.6",
     "docker-compose": "^0.24.8",
+    "is-port-reachable": "3.1.0",
     "jest": "^29.7.0",
+    "nock": "^13.5.4",
+    "node-notifier": "^10.0.1",
     "nodemon": "^3.1.4",
     "ts-jest": "^29.2.4",
     "ts-node": "^10.9.2",

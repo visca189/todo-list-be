@@ -31,7 +31,7 @@ export const errorHandler = {
     });
   },
 
-  handleError: (errorToHandle: unknown): number => {
+  handleError: (errorToHandle: unknown): AppError => {
     try {
       const appError: AppError = covertUnknownToAppError(errorToHandle);
       logger.error(appError.message, appError);
@@ -39,7 +39,7 @@ export const errorHandler = {
       if (appError.isCatastrophic) {
         terminateHttpServerAndExit(errorHandler.gracefulShutdown);
       }
-      return appError.HTTPStatus;
+      return appError;
     } catch (handlingError: unknown) {
       // Not using the logger here because it might have failed
       process.stdout.write(
@@ -47,7 +47,7 @@ export const errorHandler = {
       );
       process.stdout.write(JSON.stringify(handlingError));
       process.stdout.write(JSON.stringify(errorToHandle));
-      return 500;
+      return new AppError('unknown error', 'unknown error', 500, true);
     }
   },
 
@@ -76,6 +76,11 @@ export function covertUnknownToAppError(errorToHandle: unknown): AppError {
   if (errorToHandle instanceof AppError) {
     return errorToHandle;
   }
+
+  if (errorToHandle instanceof SyntaxError) {
+    return new AppError(errorToHandle.name, errorToHandle.message, 400, false);
+  }
+
   const errorToEnrich: object = getObjectIfNotAlreadyObject(errorToHandle);
   const message = getOneOfTheseProperties(
     errorToEnrich,

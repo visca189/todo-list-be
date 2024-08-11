@@ -14,20 +14,24 @@ const dutyDataSchema = z.object({
   is_completed: z.boolean(),
 });
 
-router.post('/', async (req, res, next) => {
-  try {
-    logger.info(
-      `Duty API was called to add new duty ${util.inspect(req.body)}`
-    );
+router.post(
+  '/',
+  validateData({ body: dutyDataSchema.pick({ name: true }) }),
+  async (req, res, next) => {
+    try {
+      logger.info(
+        `Duty API was called to add new duty ${util.inspect(req.body)}`
+      );
 
-    const { name } = req.body;
+      const { name } = req.body;
 
-    const result = await duty.addDuty(name);
-    return res.json(result);
-  } catch (error) {
-    next(error);
+      const result = await duty.addDuty(name);
+      return res.json(result);
+    } catch (error) {
+      next(error);
+    }
   }
-});
+);
 
 router.get('/', async (req, res, next) => {
   try {

@@ -1,4 +1,3 @@
-import { IncomingMessage, ServerResponse } from 'http';
 import cors from 'cors';
 import * as configurationProvider from '../config-provider';
 import { z } from 'zod';
@@ -20,7 +19,7 @@ export function corsSetup() {
   const options: Options = {
     maxAge: 86400,
     optionsSuccessStatus: 204,
-    methods: 'GET,PUT,POST,OPTIONS',
+    methods: 'GET,PUT,POST,OPTIONS,DELETE',
     allowedHeaders: ['Content-Type', 'Authorization'],
   };
 

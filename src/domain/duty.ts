@@ -4,7 +4,7 @@ export async function addDuty(name: string) {
   const dbConnection = getDbConnection();
   const data = await dbConnection.query(
     `
-    insert into duty (name) values ($1) returning id
+    insert into duty (name) values ($1) returning id, name, is_completed
   `,
     [name]
   );

@@ -95,11 +95,11 @@ function defineErrorHandlingMiddleware(expressApp: express.Application) {
         }
       }
 
-      errorHandler.handleError(error);
-      res.status(error?.HTTPStatus || 500).json({
-        status: error.HTTPStatus || 500,
-        name: error.name,
-        message: error.message,
+      const appError = errorHandler.handleError(error);
+      res.status(appError.HTTPStatus).json({
+        status: appError.HTTPStatus,
+        name: appError.name,
+        message: appError.message,
       });
     }
   );

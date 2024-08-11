@@ -93,7 +93,14 @@ To get a local copy up and running follow these simple example steps.
    - For build:
 
    ```sh
+   yarn build
    yarn start
+   ```
+
+   - For Test:
+
+   ```sh
+   yarn test
    ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>

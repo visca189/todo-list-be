@@ -84,17 +84,17 @@ To get a local copy up and running follow these simple example steps.
 
 6. Run the project
 
-- For development:
+   - For development:
 
-```sh
-yarn start:dev
-```
+   ```sh
+   yarn start:dev
+   ```
 
-- For build:
+   - For build:
 
-```sh
-yarn start
-```
+   ```sh
+   yarn start
+   ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -110,7 +110,7 @@ The REST API to the to do list backend is described below.
 
 ### Response
 
-    Status: 200 OK
+Status: 200 OK
 
 ```json
 [
@@ -120,6 +120,16 @@ The REST API to the to do list backend is described below.
     "is_completed": false
   }
 ]
+```
+
+Status: 404 Not Found
+
+```json
+{
+  "status": 404,
+  "name": "DUTY_NOT_FOUND",
+  "message": "No duty found"
+}
 ```
 
 ## Create a new Duty
@@ -199,7 +209,7 @@ Status: 404 Not Found
 
 ### Response
 
-    Status: 204 No Content
+Status: 204 No Content
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 ```
